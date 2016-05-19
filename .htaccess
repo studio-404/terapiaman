@@ -1,0 +1,22 @@
+# block access to some sensible files
+<Files ~ "^sftp-config.json|.git|.htaccess|config.php|lib">
+  Order allow,deny
+  Deny from all
+</Files>
+
+RewriteEngine On 
+
+RewriteCond ${REQUEST_URI} ^.+$
+RewriteCond %{REQUEST_FILENAME} \.(gif|jpe?g|png|js|css|ico|txt|pdf|xml|woff|eot|ttf|svg)$ [OR]
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d [OR]
+RewriteCond %{REQUEST_FILENAME} -l
+RewriteRule ^ - [L]
+
+RewriteRule . index.php [QSA,L]
+
+# choose opener file
+DirectoryIndex index.php 
+
+RewriteCond %{REQUEST_FILENAME} !-f [OR]
+RewriteCond %{REQUEST_FILENAME} !-d
