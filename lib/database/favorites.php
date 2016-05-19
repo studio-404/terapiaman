@@ -27,11 +27,6 @@ class lib_database_favorites extends lib_database_connection{
 	}
 
 	public function add($c, $session_id, $item_id){
-		$the_file = "favourites_".$session_id.".json";
-		$json_file = $c["website.json"].$the_file;
-		$json_file2 = $c["website.json"]."welcomeArticles.json";
-		$json_file3 = $c["website.json"]."allArticles.json";
-
 		$conn = $this->conn($c); 
 		$check = 'SELECT `id` FROM `favourites` WHERE `item_id`=:item_id AND `user_id`=:user_id'; 
 		$pre = $conn->prepare($check); 
@@ -55,18 +50,17 @@ class lib_database_favorites extends lib_database_connection{
 		}else{
 			$out = "სტატია უკვე დამატებულია ფავორიტებში !";
 		}
-		if(file_exists($json_file)){ unlink($json_file); }
-		if(file_exists($json_file2)){ unlink($json_file2); }
-		if(file_exists($json_file3)){ unlink($json_file3); }
+		$removeFiles = array(
+			$c["website.json"].'favourites*.*', 
+			$c["website.json"].'welcomeArticles*.*', 
+			$c["website.json"].'allArticles*.*'
+		);
+		lib_functions_deletefiles::rem($removeFiles);
 		return $out; 
 	}
 
 	public function remove($c, $session_id, $item_id){
-		$the_file = "favourites_".$session_id.".json";
-		$json_file = $c["website.json"].$the_file;
-		$json_file2 = $c["website.json"]."welcomeArticles.json";
-		$json_file3 = $c["website.json"]."allArticles.json";
-
+		
 		$conn = $this->conn($c); 
 		$sql = 'DELETE FROM `favourites` WHERE `item_id`=:item_id AND `user_id`=:user_id'; 
 		$prepare = $conn->prepare($sql); 
@@ -79,9 +73,13 @@ class lib_database_favorites extends lib_database_connection{
 		}else{
 			$out = "წაშლისას მოხდა შეცდომა !";
 		}
-		if(file_exists($json_file)){ unlink($json_file); }
-		if(file_exists($json_file2)){ unlink($json_file2); }
-		if(file_exists($json_file3)){ unlink($json_file3); }
+
+		$removeFiles = array(
+			$c["website.json"].'favourites*.*', 
+			$c["website.json"].'welcomeArticles*.*', 
+			$c["website.json"].'allArticles*.*'
+		);
+		lib_functions_deletefiles::rem($removeFiles);
 		
 		return $out; 
 	}

@@ -1,6 +1,10 @@
 <?php
 session_start();
 header('X-Frame-Options: DENY');
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 if(substr($_SERVER['SERVER_NAME'],0,4) != "www." && $_SERVER['SERVER_NAME'] != 'localhost'){
     header('Location: http://www.'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']);
 }

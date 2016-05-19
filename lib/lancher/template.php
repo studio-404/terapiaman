@@ -27,7 +27,7 @@ class lib_lancher_template{
 			$file_requested = $c["website.directory"].'/img/'.$s[1]; 
 			echo file_get_contents($file_requested);
 			exit();
-		}else if(!empty($s[0]) && is_numeric($s[1]) && $s[0]=="slider"){
+		}else if(!empty($s[0]) && !empty($s[1]) && is_numeric($s[1]) && $s[0]=="slider"){
 			/* Image Load */
 			header('Access-Control-Allow-Origin: *');
 			$lib_database_slider = new lib_database_slider(); 
@@ -45,8 +45,6 @@ class lib_lancher_template{
 			/* Load requested file */ 
 			$url = lib_functions_geotoeng::trans($s[0]);
 
-			
-
 			if(urldecode($s[0])=="სტატია" && is_numeric($s[1])){ 
 				$lib_modules_statia = new lib_modules_statia(); 
 				$d = $lib_modules_statia->stat($c,$s);  
@@ -58,9 +56,14 @@ class lib_lancher_template{
 				$data['view'] = $d[0]["view"];
 				$data['meta_description'] = $d[0]["meta_desc"];
 				$file_requested = $c["website.directory"].'/'.$url.'.php'; 	
-			}else if(urldecode($s[0])=="კითხვა-პასუხი" && is_numeric($s[1])){
+			}else if(urldecode($s[0])=="კითხვა-პასუხი" && !empty($s[1]) && is_numeric($s[1])){
 				$data['title'] = "კითხვა პასუხი";
 				$data['meta_description'] = "კითხვა პასუხი";
+
+			
+				$lib_modules_questioninside = new  lib_modules_questioninside(); 
+				$data['qustions'] = $lib_modules_questioninside->q($c, $s[1]);
+
 				$file_requested = $c["website.directory"].'/kitxvapasuxi_inside.php'; 
 			}else if(urldecode($s[0])=="ყველა-სტატია"){
 			   $lib_database_pagedata = new lib_database_pagedata(); 

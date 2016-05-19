@@ -1938,7 +1938,7 @@ article .post-content .data-info span a{ color: #198b66; text-decoration: underl
 .loader{ margin: 0; padding: 0; }
 .loader a{ margin: 0; padding: 0; font-size: 14px; font-family: 'Anna'; font-weight: bold; text-align: left; color: #198b66 }
 .loader a:hover{ text-decoration: none; color: #555555; }
-.banners{ margin:20px 0px; padding: 0; width: 100%;  }
+.banners{ margin:20px 0px; padding: 0; width: 100%; clear:both;  }
 .banners ul{ margin:0; padding: 0; list-style-type: none; }
 .banners ul li{ margin:0; padding: 0; }
 .banners ul li a{ margin:0; padding: 0; display: block; }
@@ -2026,8 +2026,8 @@ footer .content .footerlogo{ min-height: 150px; background-image: url('../img/fo
 }
 .nounderline{ text-decoration: none !important; margin-right: 10px; float: left; color: #198b66 !important; }
 .question-box{ margin: 0 0 15px 0; padding: 0 0 30px 0; display: block; border-bottom: 1px solid #f2f2f2; }
-.tags{ margin: 15px 0 0 0 !important; padding: 0 0; width: 100%; float: left; }
-.tags a{ text-decoration: none; color: white; display: block;}
+.tags{ margin: 15px 0 15px 0 !important; padding: 0 0; width: 100%; float: left; }
+.tags a{ text-decoration: none; color: white; display: block; margin: 5px 0; float: left; }
 .tags a .label{ margin: 0 10px 0 0; padding: 5px; float: left; background-color: #198b66 }
 .tags a:hover .label{ background-color: #1fa67a; text-decoration: underline; }
 .actions-box a{ color:#198b66; float: left; margin: 0 10px 0 0;  }
@@ -2058,7 +2058,7 @@ footer .content .footerlogo{ min-height: 150px; background-image: url('../img/fo
 	.navbar-toggle{ position: absolute; top: -5px; right: 0; z-index: 1000; background-color: #f2f2f2; display: block; cursor: pointer; }
 	.navbar-toggle span{ background-color: #1fa67a; }
 	.left-side{ margin: 20px 0px !important; padding: 0 !important; }
-	.right-side{ margin: 20px 0px !important; padding: 0 !important; }
+	.right-side{ margin: 20px 0px !important; padding: 0 !important; clear: both; }
 	.leftarrow{ top: calc(50% - 13px); background-size: 23px 23px; width:23px; height: 23px; }
 	.rightarrow{ top: calc(50% - 13px); background-size: 23px 23px; width:23px; height: 23px; }
 	.carousel-caption{ padding:5px; max-height: 35px !important; overflow: hidden; }

@@ -14,15 +14,17 @@
 	<section class="col-lg-9 col-md-9 col-sm-12 left-side textpage">
 		<h1>
 			<span class="icon-about" style="background-image: url('img/qanswers.png');"></span>
-			<?=$data['title']?></h1>
+			<?=$data['title']?>
+		</h1>
 		<div class="content-text">
-			<h4 class="media-heading">12 აგვვისტო 2015 | თამარ ბაბაიანი</h4>
+			<!-- <h4 class="media-heading">12 აგვვისტო 2015 | თამარ ბაბაიანი</h4>
 			<p>მოგესალმებით,რამდენიმე დღის წინ უკანა ტანზე ხვრელთან ზედამხარეს გამიჩნდა მცირე ზომის გამონაზარდი, მაგრამ არ ვუჩივი არც სისხლდენას არც შეკრულობას და სხვა ბუასილის სიმპტომებს,თუ შეგიძლიათ მითხრათ რა შეიძლება იყოს და როგორ შეიძლება სახლის პირობებში მკურნალობა?წინასწარ გმადლობ პასუხისთვის.</p>
 			<div class="actions-box">
 				<a href=""><i class="fa fa-reply" aria-hidden="true"></i>&nbsp;&nbsp;პასუხის მიწერა</a>
 				<a href=""><i class="fa fa-gavel" aria-hidden="true"></i>&nbsp;&nbsp; გასაჩივრება</a>
 				<a href=""><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp; წაშლა</a>
-			</div>
+			</div> -->
+			<?=$data['qustions']?>
 
 			<div style="clear:both"></div>
 			<div class="answers-box">
@@ -47,14 +49,14 @@
 						</div><div style="clear:both"></div>
 			          </div>
 			    </div>			    
-			    
-			</div>
+			    <div style="clear:both"></div>
+			</div><div style="clear:both"></div>
 
 			<div class="replay-box">
 				<div class="alert alert-warning" role="alert">* კომენტარის დამატება შეუძლია მხოლოდ კითხვის დამსმელს და ვებ გვერდის ადმინისტრატორებს !</div>
 				<textarea name="replay" id="replay"></textarea>
 				<a href="javascript:;" class="btn btn-primary" role="button" id="replay-answer" style="margin-top:15px;">დამატება</a>
-			</div>
+			</div><div style="clear:both"></div>
 			
 				          
 

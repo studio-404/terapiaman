@@ -43,10 +43,10 @@ class lib_modules_allarticles{
           $out .= '<span class="info-link" itemprop="author" itemscope itemtype="https://schema.org/Person"><a href=""><i class="fa fa-user-md" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp; <span itemprop="name">'.strip_tags($article['u_name']).'</span></a></span>';
           
           
-          $out .= '<p class="tags">';
+          $out .= '<p class="tags" itemscope itemtype="http://schema.org/SiteNavigationElement">';
           $tags = explode(",",$article['ci_tags']);
           foreach ($tags as $tag) {
-               $out .= '<a href="'.$c["website.base"].'ყველა-სტატია/?tags='.urlencode(trim($tag, " ")).'"><span class="label label-success"><i class="fa fa-tag" aria-hidden="true"></i>&nbsp;&nbsp;'.trim($tag," ").'</span></a>';
+               $out .= '<a href="'.$c["website.base"].'ყველა-სტატია/?tags='.urlencode(trim($tag, " ")).'" itemprop="url"><span class="label label-success"><i class="fa fa-tag" aria-hidden="true"></i>&nbsp;&nbsp;<font itemprop="name">'.trim($tag," ").'</font></span></a>';
           }
           $out .= '</p>';
 

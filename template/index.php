@@ -4,7 +4,7 @@
 ?>
 
 <section class="container navigarion">
-  <?php
+  <?php   
   $lib_modules_navigation = new lib_modules_navigation(); 
   echo $lib_modules_navigation->menu($c);
   ?>

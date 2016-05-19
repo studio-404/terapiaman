@@ -10,7 +10,7 @@ class lib_database_allarticles extends lib_database_connection{
 
 		$limit = 'LIMIT '.$from.','.$perpage;
 		
-		if(is_numeric($s[1])){// კატეგორია არჩეულია
+		if(!empty($s[1]) && is_numeric($s[1])){// კატეგორია არჩეულია
 			$category_id = ' AND `category_items`.`cat_id`="'.(int)$s[1].'" ';
 			$addfilename .= '_'.$s[1];
 		}else if(lib_validate_request::method("GET","tags")){// ტეგით ძებნა 

@@ -48,12 +48,12 @@
 			</div>
 			<div class="col-lg-9 desktop-inside2" itemprop="description">
 				<?=html_entity_decode($data['text'])?>
-				<p class="tags">
+				<p class="tags" itemscope itemtype="http://schema.org/SiteNavigationElement">
 					<?php
 					$tags = explode(",",$data['tags']);
 					if(count($tags)>0):
 					foreach ($tags as $tag) {
-		               echo '<a href="'.$c["website.base"].'ყველა-სტატია/?tags='.urlencode(trim($tag, " ")).'"><span class="label label-success"><i class="fa fa-tag" aria-hidden="true"></i>&nbsp;&nbsp;'.trim($tag," ").'</span></a>';
+		               echo '<a href="'.$c["website.base"].'ყველა-სტატია/?tags='.urlencode(trim($tag, " ")).'" itemprop="url"><span class="label label-success"><i class="fa fa-tag" aria-hidden="true"></i>&nbsp;&nbsp;<font itemprop="name">'.trim($tag," ").'</font></span></a>';
 		          	}
 		          	endif;
 					?>
