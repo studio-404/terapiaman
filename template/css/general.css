@@ -2037,6 +2037,7 @@ footer .content .footerlogo{ min-height: 150px; background-image: url('../img/fo
 .replay-box h5{ margin: 0; padding: 5px 0; font-family: 'AnnaCaps'; font-size:14px; color: #555555;  }
 .replay-box textarea{ margin: 0; padding: 10px; width: 100% !important; height: 50px; border:solid 1px #cccccc; }
 .answers-box{ margin: 40px 0 0 0; }
+#replay{ outline: none !important; }
 /* Mobile and tablet vertions */
 @media (max-width: 768px) { 
 

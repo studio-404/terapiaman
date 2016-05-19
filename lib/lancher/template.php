@@ -63,6 +63,7 @@ class lib_lancher_template{
 			
 				$lib_modules_questioninside = new  lib_modules_questioninside(); 
 				$data['qustions'] = $lib_modules_questioninside->q($c, $s[1]);
+				$data['answers'] = $lib_modules_questioninside->a($c, $s[1]); 
 
 				$file_requested = $c["website.directory"].'/kitxvapasuxi_inside.php'; 
 			}else if(urldecode($s[0])=="ყველა-სტატია"){
