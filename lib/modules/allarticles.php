@@ -2,7 +2,7 @@
 class lib_modules_allarticles{
 	public function art($c,$s){
 	    
-        $lib_database_allarticles = new lib_database_allarticles(); 
+         $lib_database_allarticles = new lib_database_allarticles(); 
 	    $articles = json_decode($lib_database_allarticles->articles($c, $s), true);
 		
 	    $out = ''; 
@@ -39,7 +39,7 @@ class lib_modules_allarticles{
           $out .= '<p itemprop="description">'.strip_tags($article['ci_short_text']).'</p>';
           $out .= '</a>';
           $out .= '<p class="data-info">';
-          $out .= '<span class="info-link"><a href="'.$c["website.base"]."კატეგორია/".$article['c_id']."/".$article['c_slug'].'"><i class="fa fa-th-list" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;'.strip_tags($article['c_title']).'</a></span>';
+          $out .= '<span class="info-link"><a href="'.$c["website.base"]."ყველა-სტატია/".$article['c_id']."/".$article['c_slug'].'"><i class="fa fa-th-list" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;'.strip_tags($article['c_title']).'</a></span>';
           $out .= '<span class="info-link" itemprop="author" itemscope itemtype="https://schema.org/Person"><a href=""><i class="fa fa-user-md" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp; <span itemprop="name">'.strip_tags($article['u_name']).'</span></a></span>';
           
           

@@ -1,14 +1,17 @@
 <?php
 class lib_modules_questioninside{
+	public $desc;
 	public function q($c, $qid){
 		$lib_database_qa = new lib_database_qa(); 
 		$quesion = json_decode($lib_database_qa->select_one($c, $qid),true); 
-		$out = '<h4 class="media-heading">'.date("d/m/Y",$quesion['date']).' | '.$quesion['usersName'].'</h4>';
-		$out .= '<p>'.strip_tags($quesion['question']).'</p>';
+		$this->desc = $quesion['question'];
+		$usersName = ($quesion['anonimus']==2) ? "უცნობი" : $quesion['usersName'];
+		$out = '<h4 class="media-heading">'.$usersName.' » '.date("d/m/Y H:m:s",$quesion['date']).'</h4>';
+		$out .= '<p itemprop="name text">'.strip_tags($quesion['question']).'</p>';
 		$out .= '<div class="actions-box">';
-		$out .= '<a href="javascript:void(0); return false;" class="replay-link" data-qid="'.$qid.'"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp;&nbsp;პასუხის მიწერა</a>';
-		$out .= '<a href=""><i class="fa fa-gavel" aria-hidden="true"></i>&nbsp;&nbsp; გასაჩივრება</a>';
-		$out .= '<a href=""><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp; წაშლა</a>';
+		$out .= '<a href="javascript:void(0);" class="replay-link" data-qid="'.$qid.'"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp;&nbsp;პასუხის მიწერა</a>';
+		$onoff = (isset($_SESSION[$c["session.prefix"]."id"]) ? "on" : "off");
+		$out .= '<a href="javascript:void(0)" class="removeQuestion" data-qid="'.$qid.'" data-offon="'.$onoff.'"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp; წაშლა</a>';
 		$out .= '</div>';
 		return $out;
 	}
@@ -19,7 +22,12 @@ class lib_modules_questioninside{
 		$out = '';
 		if(!empty($answer)){
 			foreach ($answer as $v) {
-				$out .= '<div class="media">';
+				if($v['anonimus']==2 && $v['userType']!="administrator"){
+					$usersName = "უცნობი";
+				}else{
+					$usersName = $v['usersName']; 
+				}
+				$out .= '<div class="media" id="i'.$v['id'].'" itemprop="suggestedAnswer" itemscope itemtype="http://schema.org/Answer">';
 				$out .= '<div class="media-left" style="min-width:100px;">';
 				$out .= '<div class="post-date">';
 				$out .= '<div class="all">';
@@ -31,11 +39,11 @@ class lib_modules_questioninside{
 				$out .= '</div>';
 				$out .= '</div>';
 				$out .= '<div class="media-body">';
-				$out .= '<h4 class="media-heading">'.$v['usersName'].'</h4>';
-				$out .= '<p style="min-height:55px;">'.$v['answer'].'</p>';
+				$out .= '<h4 class="media-heading">'.$usersName.'</h4>';
+				$out .= '<p style="min-height:55px;" itemprop="text">'.$v['answer'].'</p>';
 				$out .= '<div class="actions-box">';
-				$out .= '<a href=""><i class="fa fa-gavel" aria-hidden="true"></i>&nbsp;&nbsp; გასაჩივრება</a>';
-				$out .= '<a href=""><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp; წაშლა</a>';
+				$onoff = (isset($_SESSION[$c["session.prefix"]."id"]) ? "on" : "off");
+				$out .= '<a href="javascript:void(0)" class="removeAnswer" data-aid="'.$v['id'].'" data-offon="'.$onoff.'"><i class="fa fa-times" aria-hidden="true"></i>&nbsp;&nbsp; წაშლა</a>';
 				$out .= '</div><div style="clear:both"></div>';
 				$out .= '</div>';
 				$out .= '</div><div style="clear:both"></div>';

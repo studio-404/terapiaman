@@ -11,7 +11,7 @@
 </section>
 
 <main class="content">
-	<section class="col-lg-9 col-md-9 col-sm-12 left-side textpage">
+	<section class="col-lg-9 col-md-9 col-sm-12 left-side textpage" itemscope itemtype="http://schema.org/Question">
 		<h1>
 			<span class="icon-about" style="background-image: url('img/qanswers.png');"></span>
 			<?=$data['title']?>
@@ -26,9 +26,15 @@
 
 			<div class="replay-box">
 				<div class="alert alert-warning" role="alert">* კომენტარის დამატება შეუძლიათ მხოლოდ კითხვის დამსმელს და ვებ გვერდის ადმინისტრატორებს !</div>
-				<textarea name="replay" id="replay"></textarea>
-				<p id="countWords"><span id="typed">0</span> / 800</p>
-				<a href="javascript:;" class="btn btn-primary" role="button" id="replay-answer" style="margin-top:15px;">დამატება</a>
+				<form action="javascript:void(0); return false" method="post" id="replayForm" class="replayForm">
+				<input type="hidden" name="hqid" id="hqid" value="<?=$GLOBALS["CURRENTSLUG"][1]?>" />
+				<textarea name="replay" id="replay" class="replay" data-offon="<?=(isset($_SESSION[$c["session.prefix"]."id"]) ? 'on' : 'off')?>" data-maxlength="<?=$c["post.max.length"]?>" data-minlength="<?=$c["post.min.length"]?>"></textarea>
+				<p id="countWords"><span id="typed">0</span> / <?=$c["post.max.length"]?></p>
+				<a href="javascript:void(0);" class="btn btn-primary" role="button" id="replay-answer" style="margin-top:15px;">დამატება</a>
+				</form>
+				<script type="text/javascript" charset="utf-8">
+				GeoKBD.map('replayForm','replay');
+				</script>
 			</div><div style="clear:both"></div>
 			
 				          
@@ -37,15 +43,12 @@
 	</section>
 
 	<section class="col-lg-3 col-md-3 col-sm-12 right-side">
-		<div class="banners" style="margin-top:0">
-			<ul>
-				<li><a href="calc.php"><img src="img/banner1.png" alt=""></a></li>
-			</ul>
-		</div>
-
 		<?php 
-		$lib_modules_gamokitxva = new lib_modules_gamokitxva(); 
-    	echo $lib_modules_gamokitxva->gamo($c);
+		$lib_modules_searchbox = new lib_modules_searchbox();
+    	echo $lib_modules_searchbox->search($c, 2);
+
+		$lib_modules_banners = new lib_modules_banners();
+    	echo $lib_modules_banners->load($c); 
     	?>
 
 	</section>

@@ -21,6 +21,26 @@ class lib_modules_categorylist{
         return $out;
 	}
 
+	public function catOptions($c, $selected = false){
+		$lib_database_categories = new lib_database_categories(); 
+		$json = json_decode($lib_database_categories->select($c),true); 
+		$out = '<select class="category" id="category">'; 
+		$out .= '<option value="">აირჩიეთ კატეგორია</option>'; 
+		foreach ($json as $v) {
+			if($selected){
+				if($selected==$v['id']){
+					$out .= '<option value="'.$v['id'].'" selected="selected">'.htmlentities($v['title']).'</option>';
+				}else{
+					$out .= '<option value="'.$v['id'].'">'.htmlentities($v['title']).'</option>';
+				}
+			}else{
+				$out .= '<option value="'.$v['id'].'">'.htmlentities($v['title']).'</option>';
+			}
+        }
+        $out .= '</select>';
+        return $out;
+	}
+
 	public function cat_footer($c){
 		$lib_database_categories = new lib_database_categories(); 
 		$json = json_decode($lib_database_categories->select($c),true); 

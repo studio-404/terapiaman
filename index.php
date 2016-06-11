@@ -1,9 +1,10 @@
 <?php
 session_start();
+session_name("terapia");
 header('X-Frame-Options: DENY');
 
 error_reporting(E_ALL);
-ini_set('display_errors', 1);
+ini_set('display_errors', 1); 
 
 if(substr($_SERVER['SERVER_NAME'],0,4) != "www." && $_SERVER['SERVER_NAME'] != 'localhost'){
     header('Location: http://www.'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']);
@@ -37,7 +38,7 @@ function __autoload($class_name)
     }
     @include $file;
 }
-
+$GLOBALS["CURRENTSLUG"] = lib_functions_geturl::slugs($c); 
 $bootstrap = new lib_lancher_bootstrap();
 $bootstrap->lanch($c); 
 ?>

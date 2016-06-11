@@ -8,11 +8,13 @@ class lib_modules_slideshow{
 		foreach ($json as $v) {
 			if($x==1){ $active =' active'; }else{ $active = ''; }
 			$out .= '<div class="item'.$active.'">';
+			$out .= '<a href="'.$v['url'].'">';
           	$out .= '<img src="'.$c["website.base"].'slider/'.$v['id'].'" width="100%" alt="'.htmlentities($v['title']).'">'; 
           	$out .= '<div class="carousel-caption">';
             $out .= '<h3>'.$v['title'].'</h3>';
             $out .= '<p>'.$v['text'].'</p>';
           	$out .= '</div>'; 
+          	$out .= '</a>'; 
 			$out .= '</div>'; 
 			$x++;
         }

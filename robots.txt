@@ -1,0 +1,4 @@
+User-agent:*
+Disallow:/_murkup/
+Disallow:/lib/
+sitemap: http://www.terapia.ge/feed/sitemap

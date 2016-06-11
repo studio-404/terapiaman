@@ -9,9 +9,9 @@ class lib_database_checkuser extends lib_database_connection{
 			":one"=>1
 		));
 		if($prepare->rowCount() > 0){
-			return false;
+			return true;
 		}else{
-			return true; 
+			return false; 
 		}
 	}
 }

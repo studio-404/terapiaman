@@ -9,15 +9,24 @@
       </div>
       <div class="modal-body">
 		
-       	<form action="javascript:;" method="post">
-    		<label>კითხვა: </label>
-       		<div class="input-group">
-			  <textarea class="form-control mycomment"></textarea><b /r>
-        <span><span id="count">0</span> / 800</span>
-			</div>
-			
-			<a href="javascript:;" class="btn btn-primary addquestions" role="button">დამატება</a>
+       	<form action="javascript:;" method="post" id="addQuestionForm" class="addQuestionForm">
+          <label>კითხვა: </label>
+          <div class="input-group">
+          <textarea class="form-control mycomment" id="mycomment" data-maxlength="<?=$c["post.max.length"]?>"></textarea><b /r>
+          <span><span id="count">0</span> / <?=$c["post.max.length"]?></span>
+          </div>
+          <div class="input-group" style="margin-top:10px;">
+          <label class="anonim-box">
+            <input type="hidden" name="anonim" id="anonim" class="anonim" value="1" />
+            <i class="fa fa-toggle-off" aria-hidden="true"></i> 
+            <span>კითხვის დასმა ანონიმურად</span>
+          </label>
+          </div>
+          <a href="javascript:;" class="btn btn-primary addquestions" role="button">დამატება</a>
        	</form>
+        <script type="text/javascript" charset="utf-8">
+        GeoKBD.map('addQuestionForm','mycomment');
+        </script>
       </div>
 
 

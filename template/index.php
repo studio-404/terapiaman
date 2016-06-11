@@ -43,21 +43,32 @@
   </section>
   <section class="col-lg-3 col-md-3 col-sm-12 right-side">
     <?php
+    $lib_modules_searchbox = new lib_modules_searchbox();
+    echo $lib_modules_searchbox->search($c);
+    
     $lib_modules_categorylist = new lib_modules_categorylist(); 
     echo $lib_modules_categorylist->cat($c);
 
+    $main_options = array(
+      "poll_id"=>"2", /* Poll unique ID */
+      "header_text"=>"გამოკითხვა", /* Poll header text */
+      "poll_question"=>"მოგწონთ ჩვენი ვებ გვერდი ?", /* Poll Question */
+      "poll_answers"=>array(
+        "დიახ", 
+        "არაუშავს", 
+        "არა" 
+      ), /* Poll possible answers, You can have as many as you want */
+      "please_wait"=>"<br />გთხოვთ დაიცადოთ ...<br /><br />", /* waiting text */
+      "temp_path"=>$c["website.json.poll"] /* Temp folder path, recommending file permition 0755 */
+    );
+    echo '<div id="poll_container">';
     $lib_modules_gamokitxva = new lib_modules_gamokitxva(); 
-    echo $lib_modules_gamokitxva->gamo($c);
-    ?>
-
+    echo $lib_modules_gamokitxva->lanch($c, $main_options);
+    echo '</div>';
     
-
-    <div class="banners">
-      <ul>
-        <li><a href="calc.php"><img src="img/banner1.png" alt="" /></a></li>
-      </ul>
-    </div>
-
+    $lib_modules_banners = new lib_modules_banners();
+    echo $lib_modules_banners->load($c); 
+    ?>
   </section>
 </main>
 <?php

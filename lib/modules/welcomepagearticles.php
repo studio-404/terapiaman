@@ -7,10 +7,10 @@ class lib_modules_welcomepagearticles{
 		
 	    $out = ''; 
 	    foreach ($articles as $article) {
-	   		  $out .= '<article itemscope itemtype="http://schema.org/NewsArticle">';
+          $out .= '<article itemscope itemtype="http://schema.org/NewsArticle">';
           $out .= '<meta itemscope itemprop="mainEntityOfPage"  itemType="https://schema.org/WebPage" itemid="https://google.com/article"/>'; 
           $out .= '<meta itemprop="datePublished" content="'.date("d-m-Y", $article['ci_date']).'" />'; 
-	   		  $out .= '<meta itemprop="dateModified" content="'.date("d-m-Y", $article['ci_date']).'" />'; 
+          $out .= '<meta itemprop="dateModified" content="'.date("d-m-Y", $article['ci_date']).'" />'; 
           
            
           $out .= '<div class="col-lg-2 post-date">';
@@ -39,8 +39,8 @@ class lib_modules_welcomepagearticles{
           $out .= '<p itemprop="description">'.strip_tags($article['ci_short_text']).'</p>';
           $out .= '</a>';
           $out .= '<p class="data-info">';
-          $out .= '<span class="info-link"><a href="'.$c["website.base"]."კატეგორია/".$article['c_id']."/".$article['c_slug'].'"><i class="fa fa-th-list" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;'.strip_tags($article['c_title']).'</a></span>';
-          $out .= '<span class="info-link" itemprop="author" itemscope itemtype="https://schema.org/Person"><a href=""><i class="fa fa-user-md" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp; <span itemprop="name">'.strip_tags($article['u_name']).'</span></a></span>';
+          $out .= '<span class="info-link"><a href="'.$c["website.base"]."ყველა-სტატია/".$article['c_id']."/".$article['c_slug'].'"><i class="fa fa-th-list" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;'.strip_tags($article['c_title']).'</a></span>';
+          $out .= '<span class="info-link" itemprop="author" itemscope itemtype="https://schema.org/Person"><a href="" style="display:block"><i class="fa fa-user-md" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp; <span itemprop="name">'.strip_tags($article['u_name']).'</span></a></span>';
           
           
           $out .= '<p class="tags" itemscope itemtype="http://schema.org/SiteNavigationElement">';

@@ -36,6 +36,13 @@
       if($all>$perpage):
       
       $currentpage = (int)lib_validate_request::method("GET","pn"); 
+      
+      $aditional_search = '';
+      $search = urldecode(lib_validate_request::method("GET","search")); 
+      if(!empty($search) && strlen($search) > 3){
+        $aditional_search = "&search=".$search; 
+      }
+
       $maxpage = ceil($all/$perpage); 
       $prev = ($currentpage>=2) ? ($currentpage - 1) : 1;
       $next = ($currentpage>=$maxpage) ? $maxpage : ($currentpage + 1);
@@ -44,19 +51,19 @@
       <nav itemscope itemtype="https://schema.org/WebPage">
         <ul class="pagination">
           <li>
-            <a href="<?=$c["website.base"]?>ყველა-სტატია/<?=$additional?>?pn=<?=$prev.$addtags?>" aria-label="Previous">
+            <a href="<?=$c["website.base"]?>ყველა-სტატია/<?=$additional?>?pn=<?=$prev.$addtags.$aditional_search?>" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
           <?php
           for($x=1; $x<=$maxpage; $x++){
             $active = ($x==$currentpage || ($currentpage==0 && $x==1)) ? ' class="active"' : '';
-            echo '<li'.$active.'><a href="'.$c["website.base"].'ყველა-სტატია/'.$additional.'?pn='.$x.$addtags.'" itemprop="relatedLink/pagination">'.$x.'</a></li>';  
+            echo '<li'.$active.'><a href="'.$c["website.base"].'ყველა-სტატია/'.$additional.'?pn='.$x.$addtags.$aditional_search.'" itemprop="relatedLink/pagination">'.$x.'</a></li>';  
           }
           ?>
           
           <li>
-            <a href="<?=$c["website.base"]?>ყველა-სტატია/<?=$additional?>?pn=<?=$next.$addtags?>" aria-label="Next">
+            <a href="<?=$c["website.base"]?>ყველა-სტატია/<?=$additional?>?pn=<?=$next.$addtags.$aditional_search?>" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
             </a>
           </li>
@@ -70,17 +77,18 @@
   </section>
   <section class="col-lg-3 col-md-3 col-sm-12 right-side">
     <?php
+    $lib_modules_searchbox = new lib_modules_searchbox();
+    echo $lib_modules_searchbox->search($c);
+    
     $lib_modules_categorylist = new lib_modules_categorylist(); 
     echo $lib_modules_categorylist->cat($c);
-    $lib_modules_gamokitxva = new lib_modules_gamokitxva(); 
-    echo $lib_modules_gamokitxva->gamo($c);
+    
+    $lib_modules_tags = new lib_modules_tags(); 
+    echo $lib_modules_tags->allTags($c);
+    
+    $lib_modules_banners = new lib_modules_banners();
+    echo $lib_modules_banners->load($c); 
     ?>
-
-    <div class="banners">
-      <ul>
-        <li><a href="calc.php"><img src="img/banner1.png" alt="" /></a></li>
-      </ul>
-    </div>
 
   </section>
 </main>

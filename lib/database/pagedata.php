@@ -14,7 +14,7 @@ class lib_database_pagedata extends lib_database_connection{
 				if($prepare->rowCount() > 0){
 					$fetch = $prepare->fetch(PDO::FETCH_ASSOC);  
 				}else{
-					//lib_functions_redirect::url($c["website.base"]."გვერდი-404");
+					lib_functions_redirect::url($c["website.base"]."გვერდი-404");
 				}
 				$json = json_encode($fetch); 
 				$lib_functions_createfile = new lib_functions_createfile(); 
@@ -33,7 +33,7 @@ class lib_database_pagedata extends lib_database_connection{
 				if($prepare->rowCount() > 0){
 					$fetch = $prepare->fetch(PDO::FETCH_ASSOC);  
 				}else{
-					//lib_functions_redirect::url($c["website.base"]."გვერდი-404");
+					lib_functions_redirect::url($c["website.base"]."გვერდი-404");
 				}
 				$json = json_encode($fetch); 
 				$lib_functions_createfile = new lib_functions_createfile(); 

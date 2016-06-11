@@ -24,5 +24,25 @@ class lib_database_insertuser extends lib_database_connection{
 		}
 	}
 
+	public function insertFbUser($c, $fbid, $fbName){
+		if(!empty($fbid) && !empty($fbName)){
+			$sha1 = time().$fbid;
+			$sha1 = sha1($sha1);
+			$conn = $this->conn($c);
+			$sql = 'INSERT INTO `users` SET `ip`=:ip, `email`=:email, `password`=:password, `namelname`=:namelname';
+			$prepare = $conn->prepare($sql); 
+			$prepare->execute(array(
+				":ip"=>$_SERVER['REMOTE_ADDR'], 
+				":email"=>$fbid, 
+				":password"=>$sha1, 
+				":namelname"=>$fbName
+			));
+			if($prepare->rowCount() > 0){
+				return true;
+			}
+		}
+		return false;
+	}
+
 }
 ?>
